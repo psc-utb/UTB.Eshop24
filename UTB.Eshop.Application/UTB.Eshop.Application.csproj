@@ -1,16 +1,14 @@
-<Project Sdk="Microsoft.NET.Sdk.Web">
+﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
     <TargetFramework>net8.0</TargetFramework>
-    <Nullable>enable</Nullable>
     <ImplicitUsings>enable</ImplicitUsings>
+    <Nullable>enable</Nullable>
   </PropertyGroup>
 
-  <PropertyGroup Condition=" '$(RunConfiguration)' == 'https' " />
-  <PropertyGroup Condition=" '$(RunConfiguration)' == 'http' " />
   <ItemGroup>
-    <ProjectReference Include="..\UTB.Eshop.Application\UTB.Eshop.Application.csproj" />
     <ProjectReference Include="..\UTB.Eshop.Domain\UTB.Eshop.Domain.csproj" />
     <ProjectReference Include="..\UTB.Eshop.Infrastructure\UTB.Eshop.Infrastructure.csproj" />
   </ItemGroup>
+
 </Project>
