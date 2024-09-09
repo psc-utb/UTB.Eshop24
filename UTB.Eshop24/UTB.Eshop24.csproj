@@ -9,6 +9,12 @@
   <PropertyGroup Condition=" '$(RunConfiguration)' == 'https' " />
   <PropertyGroup Condition=" '$(RunConfiguration)' == 'http' " />
   <ItemGroup>
+    <PackageReference Include="Microsoft.EntityFrameworkCore.Design" Version="8.0.8">
+      <PrivateAssets>all</PrivateAssets>
+      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+    </PackageReference>
+  </ItemGroup>
+  <ItemGroup>
     <ProjectReference Include="..\UTB.Eshop.Application\UTB.Eshop.Application.csproj" />
     <ProjectReference Include="..\UTB.Eshop.Domain\UTB.Eshop.Domain.csproj" />
     <ProjectReference Include="..\UTB.Eshop.Infrastructure\UTB.Eshop.Infrastructure.csproj" />
