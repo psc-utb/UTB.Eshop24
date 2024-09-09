@@ -12,5 +12,15 @@ namespace UTB.Eshop.Infrastructure.Database
         public EshopDbContext(DbContextOptions dbContextOptions) : base(dbContextOptions)
         {
         }
+
+        protected override void OnModelCreating(ModelBuilder modelBuilder)
+        {
+            base.OnModelCreating(modelBuilder);
+
+            ProductInit productInit = new ProductInit();
+            modelBuilder.Entity<Product>().HasData(productInit.GetProductsFood3());
+            CarouselInit carouselInit = new CarouselInit();
+            modelBuilder.Entity<Carousel>().HasData(carouselInit.GetCarouselsIT3());
+        }
     }
 }
