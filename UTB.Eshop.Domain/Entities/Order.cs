@@ -4,6 +4,7 @@ using UTB.Eshop.Domain.Entities.Interfaces;
 
 namespace UTB.Eshop.Domain.Entities
 {
+    [Table(nameof(Order))]
     public class Order : Entity<int>
     {
         [DatabaseGenerated(DatabaseGeneratedOption.Computed)]

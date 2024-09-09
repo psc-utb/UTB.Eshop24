@@ -3,6 +3,7 @@ using System.ComponentModel.DataAnnotations.Schema;
 
 namespace UTB.Eshop.Domain.Entities
 {
+    [Table(nameof(OrderItem))]
     public class OrderItem : Entity<int>
     {
         [ForeignKey(nameof(Order))]
