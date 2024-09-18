@@ -34,6 +34,18 @@ namespace UTB.Eshop24.Areas.Admin.Controllers
 
             return RedirectToAction(nameof(ProductController.Select));
         }
+
+        public IActionResult Delete(int id)
+        {
+            bool deleted = _productAppService.Delete(id);
+
+            if (deleted)
+            {
+                return RedirectToAction(nameof(ProductController.Select));
+            }
+            else
+                return NotFound();
+        }
     }
 }
 

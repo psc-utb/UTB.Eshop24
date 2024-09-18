@@ -18,6 +18,7 @@
                     <th scope="col">@nameof(Product.Description)</th>
                     <th scope="col">@nameof(Product.Price)</th>
                     <th scope="col">@nameof(Product.ImageSrc)</th>
+                    <th scope="col">Delete</th>
                 </tr>
             </thead>
             <tbody>
@@ -31,6 +32,7 @@
                         <td>@product.Description</td>
                         <td>@product.Price</td>
                         <td>@product.ImageSrc</td>
+                        <td><a asp-action="Delete" asp-route-id="@product.Id">Delete</a></td>
                     </tr>
                 }
 

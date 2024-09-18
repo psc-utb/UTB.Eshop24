@@ -23,6 +23,23 @@ namespace UTB.Eshop.Application.Implementation
             _eshopDbContext.Products.Add(product);
             _eshopDbContext.SaveChanges();
         }
+
+        public bool Delete(int id)
+        {
+            bool deleted = false;
+
+            Product? product
+                = _eshopDbContext.Products.FirstOrDefault(prod => prod.Id == id);
+
+            if (product != null)
+            {
+                _eshopDbContext.Products.Remove(product);
+                _eshopDbContext.SaveChanges();
+                deleted = true;
+            }
+
+            return deleted;
+        }
     }
 }
 
