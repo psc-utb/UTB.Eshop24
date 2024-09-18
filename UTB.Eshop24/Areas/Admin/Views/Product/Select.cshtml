@@ -32,7 +32,7 @@
                         <td>@product.Description</td>
                         <td>@product.Price</td>
                         <td>@product.ImageSrc</td>
-                        <td><a asp-action="Delete" asp-route-id="@product.Id">Delete</a></td>
+                        <td><a asp-action="Delete" asp-route-id="@product.Id" onclick="return ConfirmDelete();">Delete</a></td>
                     </tr>
                 }
 
@@ -43,4 +43,9 @@
     {
         <p>Product table is empty!</p>
     }
+}
+
+@section Scripts
+{
+    <script src="~/js/dialogs.js"></script>
 }
