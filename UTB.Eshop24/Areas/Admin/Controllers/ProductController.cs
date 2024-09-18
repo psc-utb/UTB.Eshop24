@@ -20,6 +20,20 @@ namespace UTB.Eshop24.Areas.Admin.Controllers
             IList<Product> products = _productAppService.Select();
             return View(products);
         }
+
+        [HttpGet]
+        public IActionResult Create()
+        {
+            return View();
+        }
+
+        [HttpPost]
+        public IActionResult Create(Product product)
+        {
+            _productAppService.Create(product);
+
+            return RedirectToAction(nameof(ProductController.Select));
+        }
     }
 }
 

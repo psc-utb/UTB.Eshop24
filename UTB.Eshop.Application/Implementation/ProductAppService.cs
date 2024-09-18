@@ -17,6 +17,12 @@ namespace UTB.Eshop.Application.Implementation
         {
             return _eshopDbContext.Products.ToList();
         }
+
+        public void Create(Product product)
+        {
+            _eshopDbContext.Products.Add(product);
+            _eshopDbContext.SaveChanges();
+        }
     }
 }
 
