@@ -6,22 +6,32 @@
 <h1>@ViewData["Title"]</h1>
 
 <form asp-action="Create" method="post">
+    <div asp-validation-summary="All"></div>
     <div class="mb-3">
         <label class="form-label" asp-for="Name"></label>
         <input class="form-control" asp-for="Name">
+        <span asp-validation-for="Name" class="text-danger"></span>
     </div>
     <div class="mb-3">
         <label class="form-label" asp-for="Description"></label>
         <input class="form-control" asp-for="Description">
+        <span asp-validation-for="Description" class="text-danger"></span>
     </div>
     <div class="mb-3">
         <label class="form-label" asp-for="Price"></label>
         <input class="form-control" asp-for="Price">
+        <span asp-validation-for="Price" class="text-danger"></span>
     </div>
     <div class="mb-3">
         <label class="form-label" asp-for="ImageSrc">Image Source</label>
         <input class="form-control" asp-for="ImageSrc">
+        <span asp-validation-for="ImageSrc" class="text-danger"></span>
     </div>
 
     <button type="submit" class="btn btn-primary">Submit</button>
 </form>
+
+@section Scripts
+{
+    <partial name="_ValidationScriptsPartial" />
+}
