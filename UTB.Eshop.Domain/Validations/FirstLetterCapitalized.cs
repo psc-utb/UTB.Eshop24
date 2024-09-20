@@ -1,9 +1,10 @@
 ﻿using System.ComponentModel.DataAnnotations;
+using Microsoft.AspNetCore.Mvc.ModelBinding.Validation;
 
 namespace UTB.Eshop.Domain.Validations
 {
     [AttributeUsage(AttributeTargets.Property | AttributeTargets.Field | AttributeTargets.Parameter)]
-    public class FirstLetterCapitalizedCZAttribute : ValidationAttribute
+    public class FirstLetterCapitalizedCZAttribute : ValidationAttribute, IClientModelValidator
     {
         protected override ValidationResult IsValid(object value, ValidationContext validationContext)
         {
@@ -33,6 +34,13 @@ namespace UTB.Eshop.Domain.Validations
             {
                 throw new NotImplementedException($"The {nameof(FirstLetterCapitalizedCZAttribute)} is not implemented for the type: {value.GetType()}");
             }
+        }
+
+        public void AddValidation(ClientModelValidationContext context)
+        {
+            if (context.Attributes.ContainsKey("data-val") == false)
+                context.Attributes.Add("data-val", "true");
+            context.Attributes.Add("data-val-firstlettercapcz", $"The {context.ModelMetadata.Name} field does not contain the first capital letter.");
         }
     }
 }
