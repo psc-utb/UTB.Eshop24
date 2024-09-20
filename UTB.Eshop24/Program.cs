@@ -14,6 +14,8 @@ builder.Services.AddDbContext<EshopDbContext>(optionsBuilder => optionsBuilder.U
 
 //registrace služeb aplikační vrstvy
 builder.Services.AddScoped<IProductAppService, ProductAppService>();
+builder.Services.AddScoped<ICarouselAppService, CarouselAppService>();
+builder.Services.AddScoped<IHomeService, HomeService>();
 
 var app = builder.Build();
 
