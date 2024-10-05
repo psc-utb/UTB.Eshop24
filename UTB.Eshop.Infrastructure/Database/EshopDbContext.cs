@@ -1,10 +1,12 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using UTB.Eshop.Domain.Entities;
 using UTB.Eshop.Infrastructure.Database.Seeding;
+using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
+using UTB.Eshop.Infrastructure.Identity;
 
 namespace UTB.Eshop.Infrastructure.Database
 {
-    public class EshopDbContext : DbContext
+    public class EshopDbContext : IdentityDbContext<User, Role, int>
     {
         public DbSet<Product> Products { get; set; }
         public DbSet<Carousel> Carousels { get; set; }

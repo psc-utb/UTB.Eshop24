@@ -2,6 +2,8 @@
 using UTB.Eshop.Infrastructure.Database;
 using UTB.Eshop.Application.Abstraction;
 using UTB.Eshop.Application.Implementation;
+using Microsoft.AspNetCore.Identity;
+using UTB.Eshop.Infrastructure.Identity;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -11,6 +13,13 @@ builder.Services.AddControllersWithViews();
 string connectionString = builder.Configuration.GetConnectionString("MySQL");
 ServerVersion serverVersion = new MySqlServerVersion("8.0.38");
 builder.Services.AddDbContext<EshopDbContext>(optionsBuilder => optionsBuilder.UseMySql(connectionString, serverVersion));
+
+
+//Configuration for Identity
+builder.Services.AddIdentity<User, Role>()
+     .AddEntityFrameworkStores<EshopDbContext>()
+     .AddDefaultTokenProviders();
+
 
 //registrace služeb aplikační vrstvy
 builder.Services.AddScoped<IProductAppService, ProductAppService>();
@@ -32,6 +41,7 @@ app.UseStaticFiles();
 
 app.UseRouting();
 
+app.UseAuthentication();
 app.UseAuthorization();
 
 app.MapControllerRoute(
