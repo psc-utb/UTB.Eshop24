@@ -21,10 +21,35 @@ builder.Services.AddIdentity<User, Role>()
      .AddDefaultTokenProviders();
 
 
+builder.Services.Configure<IdentityOptions>(options =>
+{
+    options.Password.RequireDigit = false;
+    options.Password.RequiredLength = 1;
+    options.Password.RequireNonAlphanumeric = false;
+    options.Password.RequireUppercase = false;
+    options.Password.RequireLowercase = false;
+    options.Password.RequiredUniqueChars = 1;
+    options.Lockout.AllowedForNewUsers = true;
+    options.Lockout.MaxFailedAccessAttempts = 10;
+    options.Lockout.DefaultLockoutTimeSpan = TimeSpan.FromMinutes(10);
+    options.User.RequireUniqueEmail = true;
+});
+
+builder.Services.ConfigureApplicationCookie(options =>
+{
+    options.Cookie.HttpOnly = true;
+    options.ExpireTimeSpan = TimeSpan.FromMinutes(30);
+    options.LoginPath = "/Security/Account/Login";
+    options.LogoutPath = "/Security/Account/Logout";
+    options.SlidingExpiration = true;
+});
+
+
 //registrace služeb aplikační vrstvy
 builder.Services.AddScoped<IProductAppService, ProductAppService>();
 builder.Services.AddScoped<ICarouselAppService, CarouselAppService>();
 builder.Services.AddScoped<IHomeService, HomeService>();
+builder.Services.AddScoped<IAccountService, AccountIdentityService>();
 
 var app = builder.Build();
 
