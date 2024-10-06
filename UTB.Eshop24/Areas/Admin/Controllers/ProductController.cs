@@ -1,10 +1,13 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using UTB.Eshop.Domain.Entities;
 using UTB.Eshop.Application.Abstraction;
+using Microsoft.AspNetCore.Authorization;
+using UTB.Eshop.Infrastructure.Identity.Enums;
 
 namespace UTB.Eshop24.Areas.Admin.Controllers
 {
     [Area("Admin")]
+    [Authorize(Roles = nameof(Roles.Admin) + ", " + nameof(Roles.Manager))]
     public class ProductController : Controller
     {
         IProductAppService _productAppService;
