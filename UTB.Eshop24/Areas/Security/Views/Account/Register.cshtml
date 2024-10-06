@@ -1,0 +1,68 @@
+﻿@model RegisterViewModel
+@{
+    ViewData["Title"] = "Register";
+}
+
+@section Styles
+{
+    <link rel="stylesheet" href="~/css/login.css" />
+}
+<div id="logreg-forms">
+    <form asp-action="Register" method="post" class="form-signup">
+
+        <br />
+        <h1 class="h3 mb-3 font-weight-normal" style="text-align: center"> Register</h1>
+        <div class="social-login">
+            <button class="btn facebook-btn social-btn" type="button"><span><i class="fab fa-facebook-f"></i> Sign up with Facebook</span> </button>
+        </div>
+        <div class="social-login">
+            <button class="btn google-btn social-btn" type="button"><span><i class="fab fa-google-plus-g"></i> Sign up with Google</span> </button>
+        </div>
+
+        <br />
+        <p style="text-align:center">OR</p>
+        <hr>
+
+        <div asp-validation-summary="All" class="text-danger"></div>
+
+        <input asp-for="Username" type="text" id="user-name" class="form-control" placeholder="Username" autofocus="">
+        <span asp-validation-for="Username" class="text-danger"></span>
+
+        <input asp-for="FirstName" type="text" id="first-name" class="form-control" placeholder="First name" autofocus="">
+        <span asp-validation-for="FirstName" class="text-danger"></span>
+
+        <input asp-for="LastName" type="text" id="last-name" class="form-control" placeholder="Last name" autofocus="">
+        <span asp-validation-for="LastName" class="text-danger"></span>
+
+        <input asp-for="Email" type="email" id="user-email" class="form-control" placeholder="Email address" autofocus="">
+        <span asp-validation-for="Email" class="text-danger"></span>
+
+        <input asp-for="Phone" type="tel" id="user-phone" class="form-control" placeholder="Phone" autofocus="">
+        <span asp-validation-for="Phone" class="text-danger"></span>
+
+        <br />
+
+        <input asp-for="Password" type="password" id="user-pass" class="form-control" placeholder="Password" autofocus="">
+        <span asp-validation-for="Password" class="text-danger"></span>
+
+        <input asp-for="RepeatedPassword" type="password" id="user-repeatpass" class="form-control" placeholder="Repeat Password" autofocus="">
+        <span asp-validation-for="RepeatedPassword" class="text-danger"></span>
+
+        <br />
+
+        <div class="text-center">
+            <button class="btn btn-primary btn-block" type="submit"><i class="fas fa-user-plus"></i> Sign Up</button>
+        </div>
+
+        <br />
+        <br />
+        <hr>
+        <a asp-action="Login" class="btn btn-success btn-block text-white" type="button" id="btn-signin"><i class="fas fa-sign-in-alt"></i> Sign in to Existing Account</a>
+
+    </form>
+</div>
+
+@section Scripts
+{
+    <partial name="_ValidationScriptsPartial" />
+}

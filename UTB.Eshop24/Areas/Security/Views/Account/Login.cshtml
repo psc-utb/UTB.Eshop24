@@ -1,0 +1,55 @@
+﻿@model LoginViewModel
+@{
+    ViewData["Title"] = "Login";
+}
+
+@section Styles
+{
+    <link rel="stylesheet" href="~/css/login.css" />
+}
+
+<div id="logreg-forms">
+    <form asp-action="Login" method="post" class="form-signin">
+
+        <br />
+        <h1 class="h3 mb-3 font-weight-normal" style="text-align: center"> Login</h1>
+        <div class="social-login">
+            <button class="btn facebook-btn social-btn" type="button"><span><i class="fab fa-facebook-f"></i> Sign in with Facebook</span> </button>
+            <button class="btn google-btn social-btn" type="button"><span><i class="fab fa-google-plus-g"></i> Sign in with Google</span> </button>
+        </div>
+        <br />
+        <p style="text-align:center">OR</p>
+        <hr>
+        @{
+            if (Model?.LoginFailed == true)
+            {
+                <div class="text-danger">Login Failed!</div>
+            }
+        }
+
+        <div asp-validation-summary="All" class="text-danger"></div>
+
+        <input asp-for="Username" type="text" id="inputUsername" class="form-control" placeholder="Usename" autofocus="">
+        <span asp-validation-for="Username" class="text-danger"></span>
+
+        <input asp-for="Password" type="password" id="inputPassword" class="form-control" placeholder="Password">
+        <span asp-validation-for="Password" class="text-danger"></span>
+        <br />
+
+        <div class="text-center">
+            <button class="btn btn-success btn-block" type="submit"><i class="fas fa-sign-in-alt"></i> Sign in</button>
+        </div>
+
+        <br />
+        <br />
+        <hr>
+        <!-- <p>Don't have an account!</p>  -->
+        <a asp-action="Register" class="btn btn-primary btn-block text-white" type="button" id="btn-signup"><i class="fas fa-user-plus"></i> Sign up New Account</a>
+
+    </form>
+</div>
+
+@section Scripts
+{
+    <partial name="_ValidationScriptsPartial" />
+}
