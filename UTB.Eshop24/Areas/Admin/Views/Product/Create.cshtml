@@ -5,7 +5,7 @@
 }
 <h1>@ViewData["Title"]</h1>
 
-<form asp-action="Create" method="post">
+<form asp-action="Create" method="post" enctype="multipart/form-data">
     <div asp-validation-summary="All"></div>
     <div class="mb-3">
         <label class="form-label" asp-for="Name"></label>
@@ -23,9 +23,9 @@
         <span asp-validation-for="Price" class="text-danger"></span>
     </div>
     <div class="mb-3">
-        <label class="form-label" asp-for="ImageSrc">Image Source</label>
-        <input class="form-control" asp-for="ImageSrc">
-        <span asp-validation-for="ImageSrc" class="text-danger"></span>
+        <label class="form-label" asp-for="Image">Image</label>
+        <input class="form-control-file" asp-for="Image">
+        <span asp-validation-for="Image" class="text-danger"></span>
     </div>
 
     <button type="submit" class="btn btn-primary">Submit</button>

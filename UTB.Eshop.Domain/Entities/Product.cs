@@ -1,6 +1,7 @@
 ﻿using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 using UTB.Eshop.Domain.Validations;
+using Microsoft.AspNetCore.Http;
 
 namespace UTB.Eshop.Domain.Entities
 {
@@ -14,5 +15,8 @@ namespace UTB.Eshop.Domain.Entities
         public string? Description { get; set; }
         public double Price { get; set; }
         public string? ImageSrc { get; set; }
+
+        [NotMapped]
+        public IFormFile? Image { get; set; }
     }
 }
