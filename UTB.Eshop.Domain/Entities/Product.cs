@@ -17,6 +17,7 @@ namespace UTB.Eshop.Domain.Entities
         public string? ImageSrc { get; set; }
 
         [NotMapped]
+        [FileContent("image")]
         public IFormFile? Image { get; set; }
     }
 }

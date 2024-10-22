@@ -24,7 +24,7 @@
     </div>
     <div class="mb-3">
         <label class="form-label" asp-for="Image">Image</label>
-        <input class="form-control-file" asp-for="Image">
+        <input id="File" class="form-control-file" asp-for="Image">
         <span asp-validation-for="Image" class="text-danger"></span>
     </div>
 
@@ -35,4 +35,5 @@
 {
     <partial name="_ValidationScriptsPartial" />
     <script src="~/js/validations/FirstLetterCapitalizedCZ.js"></script>
+    <script src="~/js/Validations/FileContentValidation.js"></script>
 }
