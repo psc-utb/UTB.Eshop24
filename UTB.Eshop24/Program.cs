@@ -46,6 +46,7 @@ builder.Services.ConfigureApplicationCookie(options =>
 
 
 //registrace služeb aplikační vrstvy
+builder.Services.AddScoped<IFileUploadService, FileUploadService>(serviceProvider => new FileUploadService(serviceProvider.GetService<IWebHostEnvironment>().WebRootPath));
 builder.Services.AddScoped<IProductAppService, ProductAppService>();
 builder.Services.AddScoped<ICarouselAppService, CarouselAppService>();
 builder.Services.AddScoped<IHomeService, HomeService>();

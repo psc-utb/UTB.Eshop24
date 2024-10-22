@@ -7,10 +7,12 @@ namespace UTB.Eshop.Application.Implementation
     public class ProductAppService : IProductAppService
     {
         EshopDbContext _eshopDbContext;
+        IFileUploadService _fileUploadService;
 
-        public ProductAppService(EshopDbContext eshopDbContext)
+        public ProductAppService(EshopDbContext eshopDbContext, IFileUploadService fileUploadService)
         {
             _eshopDbContext = eshopDbContext;
+            _fileUploadService = fileUploadService;
         }
 
         public IList<Product> Select()
@@ -20,6 +22,12 @@ namespace UTB.Eshop.Application.Implementation
 
         public void Create(Product product)
         {
+            if (product.Image != null)
+            {
+                string imageSrc = _fileUploadService.FileUpload(product.Image, Path.Combine("img", "products"));
+                product.ImageSrc = imageSrc;
+            }
+
             _eshopDbContext.Products.Add(product);
             _eshopDbContext.SaveChanges();
         }
