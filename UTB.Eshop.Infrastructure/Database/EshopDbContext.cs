@@ -4,6 +4,7 @@ using UTB.Eshop.Infrastructure.Database.Seeding;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using UTB.Eshop.Infrastructure.Identity;
 using Microsoft.AspNetCore.Identity;
+using UTB.Eshop.Web.Models.Database.Configuration.MySQL;
 
 namespace UTB.Eshop.Infrastructure.Database
 {
@@ -11,6 +12,8 @@ namespace UTB.Eshop.Infrastructure.Database
     {
         public DbSet<Product> Products { get; set; }
         public DbSet<Carousel> Carousels { get; set; }
+        public DbSet<Order> Orders { get; set; }
+        public DbSet<OrderItem> OrderItems { get; set; }
 
         public EshopDbContext(DbContextOptions dbContextOptions) : base(dbContextOptions)
         {
@@ -45,6 +48,13 @@ namespace UTB.Eshop.Infrastructure.Database
             List<IdentityUserRole<int>> managerUserRoles = userRolesInit.GetRolesForManager();
             modelBuilder.Entity<IdentityUserRole<int>>().HasData(adminUserRoles);
             modelBuilder.Entity<IdentityUserRole<int>>().HasData(managerUserRoles);
+
+
+
+            //configure DateTimeCreated and User for Order entity using configuration class
+            modelBuilder.ApplyConfiguration<Order>(new OrderConfiguration());
+            ////alternative for direct configuration of User entity using IUser interface property of Order entity (this configuration is included in OrderConfigurationBase class)
+            //modelBuilder.Entity<Order>().HasOne<User>(e => e.User as User);
         }
     }
 }
