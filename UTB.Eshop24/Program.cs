@@ -51,6 +51,7 @@ builder.Services.AddScoped<IProductAppService, ProductAppService>();
 builder.Services.AddScoped<ICarouselAppService, CarouselAppService>();
 builder.Services.AddScoped<IHomeService, HomeService>();
 builder.Services.AddScoped<IAccountService, AccountIdentityService>();
+builder.Services.AddScoped<ISecurityService, SecurityIdentityService>();
 
 var app = builder.Build();
 
