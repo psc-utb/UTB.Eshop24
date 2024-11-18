@@ -1,0 +1,66 @@
+﻿@model IList<Order>
+@{
+    ViewData["Title"] = "My Orders";
+}
+<h2>@ViewData["Title"]</h2>
+
+<br />
+
+@{
+    if (Model != null && Model.Count > 0)
+    {
+        foreach (var item in Model)
+        {
+            <table style="width:100%" class="table table-responsive table-striped table-bordered">
+                <tr>
+                    <th class="col-sm-1">@nameof(Order.Id)</th>
+                    <th class="col-sm-2">@nameof(Order.OrderNumber)</th>
+                    <th class="col-sm-3">@nameof(Order.TotalPrice)</th>
+                    <th class="col-sm-3">@nameof(Order.DateTimeCreated)</th>
+                    <th class="col-sm-3">@nameof(Order.User.UserName)</th>
+                </tr>
+                <tr>
+                    <td class="col-sm-1">@item.Id</td>
+                    <td class="col-sm-2">@item.OrderNumber</td>
+                    <td class="col-sm-3">@item.TotalPrice.ToString("C2")</td>
+                    <td class="col-sm-3">@item.DateTimeCreated</td>
+                    <td class="col-sm-3">@item.User.UserName</td>
+                </tr>
+
+
+            </table>
+
+            <details>
+                <summary>Details</summary>
+                <div id="order_items_@item.Id">
+                    <h4>Order Items</h4>
+                    <table style="width:41.667%" class="table table-responsive table-bordered">
+                        <tr>
+                            <th class="col-sm-3">@nameof(Product.Name)</th>
+                            <th class="col-sm-1">@nameof(OrderItem.Amount)</th>
+                            <th class="col-sm-1">@nameof(OrderItem.Price)</th>
+                        </tr>
+
+                        @{
+                            foreach (var itemOrderItems in item.OrderItems)
+                            {
+                                <tr>
+                                    <td class="col-sm-3">@itemOrderItems.Product.Name</td>
+                                    <td class="col-sm-1">@itemOrderItems.Amount</td>
+                                    <td class="col-sm-1">@itemOrderItems.Price.ToString("C2")</td>
+                                </tr>
+                            }
+                        }
+                    </table>
+                </div>
+            </details>
+            <br />
+            <br />
+            <br />
+        }
+    }
+    else
+    {
+        <h2>Orders are empty!</h2>
+    }
+}
