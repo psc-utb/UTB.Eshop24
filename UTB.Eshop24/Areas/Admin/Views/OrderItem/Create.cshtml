@@ -1,0 +1,34 @@
+﻿@model OrderItem
+
+@{
+    ViewData["Title"] = "Order Item - Create";
+}
+<h1>@ViewData["Title"]</h1>
+
+<form asp-action="Create" method="post">
+    <div asp-validation-summary="All" class="text-danger"></div>
+    <div class="mb-3">
+        <label class="form-label">@nameof(Order.OrderNumber)</label>
+        <select asp-for="OrderID" class="form-control" asp-items="ViewBag.OrderID"></select>
+    </div>
+    <div class="mb-3">
+        <label class="form-label">@nameof(Product.Name)</label>
+        <select asp-for="ProductID" class="form-control" asp-items="ViewBag.ProductID"></select>
+    </div>
+    <div class="mb-3">
+        <label class="form-label">@nameof(OrderItem.Amount)</label>
+        <input class="form-control" asp-for="Amount">
+        <span asp-validation-for="Amount" class="text-danger"></span>
+    </div>
+    <div class="mb-3">
+        <label class="form-label">@nameof(OrderItem.Price)</label>
+        <input class="form-control" asp-for="Price">
+        <span asp-validation-for="Price" class="text-danger"></span>
+    </div>
+    <button type="submit" class="btn btn-primary">Submit</button>
+</form>
+
+@section Scripts
+{
+    <partial name="_ValidationScriptsPartial" />
+}
