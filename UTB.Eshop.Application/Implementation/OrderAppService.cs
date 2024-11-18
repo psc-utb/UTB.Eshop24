@@ -21,6 +21,15 @@ namespace UTB.Eshop.Application.Implementation
                                   .ToList();
         }
 
+        public IList<Order> SelectForUser(int userId)
+        {
+            return _eshopDbContext.Orders.Where(or => or.UserId == userId)
+                                         .Include(o => o.User)
+                                         .Include(o => o.OrderItems)
+                                         .ThenInclude(oi => oi.Product)
+                                         .ToList();
+        }
+
         public void Create(Order order)
         {
             _eshopDbContext.Orders.Add(order);
