@@ -4,8 +4,14 @@ using UTB.Eshop.Application.Abstraction;
 using UTB.Eshop.Application.Implementation;
 using Microsoft.AspNetCore.Identity;
 using UTB.Eshop.Infrastructure.Identity;
+using System.Globalization;
 
 var builder = WebApplication.CreateBuilder(args);
+
+//culture settings for server side if needed (it uses czech currency and uses decimal comma)
+var cultInfo = new CultureInfo("cs-cz");
+CultureInfo.DefaultThreadCurrentCulture = cultInfo;
+CultureInfo.DefaultThreadCurrentUICulture = cultInfo;
 
 // Add services to the container.
 builder.Services.AddControllersWithViews();
@@ -66,6 +72,7 @@ builder.Services.AddScoped<IAccountService, AccountIdentityService>();
 builder.Services.AddScoped<ISecurityService, SecurityIdentityService>();
 builder.Services.AddScoped<IOrderAppService, OrderAppService>();
 builder.Services.AddScoped<IOrderItemAppService, OrderItemAppService>();
+builder.Services.AddScoped<IOrderCartService, OrderCartService>();
 
 var app = builder.Build();
 

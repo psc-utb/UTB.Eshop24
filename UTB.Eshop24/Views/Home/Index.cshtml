@@ -74,7 +74,11 @@
                                 </div>
                                 <!-- Product actions-->
                                 <div class="card-footer p-4 pt-0 border-top-0 bg-transparent">
-                                    <div class="text-center"><a class="btn btn-outline-dark mt-auto" href="#">Add to cart</a></div>
+                                    <div class="text-center"><a class="btn btn-outline-dark mt-auto"
+                                                                onclick="Buy(@product.Id,
+                                                                            '@Url.Action(nameof(CustomerOrderCartController.AddOrderItemsToSession), nameof(CustomerOrderCartController).Replace(nameof(Controller), String.Empty), new { Area = nameof(UTB.Eshop.Web.Areas.Customer) })',
+                                                                            '#total_price',
+                                                                            '@System.Globalization.CultureInfo.CurrentCulture.Name')">Add to cart</a></div>
                                 </div>
                             </div>
                         </div>
@@ -88,4 +92,14 @@
 @section Styles
 {
     <link rel="stylesheet" href="~/css/shop_home.css" asp-append-version="true" />
+}
+
+@section Scripts
+{
+    <environment include="Development">
+        <script src="~/js/product.js"></script>
+    </environment>
+    <environment exclude="Development">
+        <script src="~/js/product.min.js"></script>
+    </environment>
 }

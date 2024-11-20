@@ -44,8 +44,22 @@
                                     <li class="nav-item">
                                         <a class="dropdown-item text-dark" asp-area="Customer" asp-controller="CustomerOrders" asp-action="Index">My Orders</a>
                                     </li>
+                                    <li class="nav-item">
+                                        <a class="dropdown-item text-dark" asp-area="Customer" asp-controller="CustomerOrderCart" asp-action="ApproveOrderInSession">Approve Current Order</a>
+                                    </li>
                                 </ul>
                             </li>
+                        }
+                    </ul>
+                    <ul class="navbar-nav navbar-right">
+                        @{
+                            double totalPrice = 0;
+                            string totalPriceString = CustomerOrderCartController.totalPriceString;
+                            if (Context.Session != null && Context.Session.IsAvailable && Context.Session.Keys.Contains(totalPriceString))
+                            {
+                                totalPrice = Context.Session.GetDouble(totalPriceString).GetValueOrDefault();
+                            }
+                            <li class="navbar-text"><a id="total_price" class="label" style="color:red;">@totalPrice.ToString("C2")</a></li>
                         }
                     </ul>
                     @{
