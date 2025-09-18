@@ -17,11 +17,7 @@ namespace UTB.Eshop.Domain.Validations
                 if (text == String.Empty)
                     return ValidationResult.Success;
 
-                if (text.First() >= 'A' && text.First() <= 'Z'
-                 || text.First() == 'Š' || text.First() == 'Č' || text.First() == 'Ř' || text.First() == 'Ž'
-                 || text.First() == 'Ý' || text.First() == 'Á' || text.First() == 'Í' || text.First() == 'É'
-                 || text.First() == 'Ú' || text.First() == 'Ď' || text.First() == 'Ň' || text.First() == 'Ó'
-                 || text.First() == 'Ť' || text.First() == 'Ě' || text.First() == 'Ů')
+                if (char.IsUpper(text.First()))
                 {
                     return ValidationResult.Success;
                 }
